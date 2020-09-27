@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <title>test for ajax </title>
+</head>
+<body>
+    <p id="demo">
+
+    </p>
+    <script>
+ var request=new XMLHttpRequest();
+ function send()
+ {
+          request.onreadystatechange=write;
+           request.open("GET","http://localhost/test.php");
+           request.setRequestHeader("content-type","application/x-www-form-urlencoded");
+           request.send("firstname=john&lastname=bainaris");
+ }
+
+ function write()
+{
+    if(request.readyState==4)
+    {
+        if(request.status==200)
+        {
+             var response=request.responseText;
+            document.getElementById("demo").innerHTML=response;
+        }
+        else
+        {
+            alert(" 404 ");
+        }
+    }
+}
+    </script>
+    <button onclick="send()">send </button>
+</body>
